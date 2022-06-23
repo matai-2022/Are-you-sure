@@ -13,9 +13,6 @@ function App() {
     goToResults()
     getquizApi()
       .then((res) => {
-        console.log('turns: ', turnsCount)
-        console.log('correct: ', quizCount)
-        console.log('game over? ', gameIsOver)
         setData(res)
       })
       .catch((err) => {
@@ -37,14 +34,13 @@ function App() {
 
   function selectHandler(e) {
     if (e.target.value == e.target.name) {
-      console.log('CORRECT!')
-      console.log('game over? ', gameIsOver)
+      e.target.style.backgroundColor = 'green'
       incrementCount()
       setTimeout(() => {
         setTurnsCount(turnsCount + 1)
       }, 1000)
     } else {
-      console.log('ARE YOU SURE!')
+      e.target.style.backgroundColor = 'red'
       // setTurnsCount(turnsCount + 1)
       setTimeout(() => {
         setTurnsCount(turnsCount + 1)
@@ -55,26 +51,21 @@ function App() {
   const game = (
     <section className="game-wrapper">
       {data.map((quiz) => (
-        <section className="game-position-wrapper" key={quiz.id}>
-          <section className="question-wrapper">
-            <h2 className="game-question">{quiz.question}</h2>
-          </section>
-          <section className="game-btn-wrapper">
-            {quiz.answers.sort().map((answer) => {
-              return (
-                <button
-                  className="game-btn"
-                  key={answer}
-                  value={answer}
-                  name={quiz.correctAnswer}
-                  onClick={selectHandler}
-                >
-                  {answer}
-                </button>
-              )
-            })}
-          </section>
-        </section>
+        <main key={quiz.id}>
+          <h3>{quiz.question}</h3>
+          {quiz.answers.sort().map((answer) => {
+            return (
+              <button
+                key={answer}
+                value={answer}
+                name={quiz.correctAnswer}
+                onClick={selectHandler}
+              >
+                {answer}
+              </button>
+            )
+          })}
+        </main>
       ))}
     </section>
   )
@@ -90,9 +81,16 @@ function App() {
   )
 
   return (
+<<<<<<< HEAD
     <main className="main-wrapper">
       <>
         <Header />
+=======
+    <>
+      <div className="app">
+        <h1>Are you sure?!</h1>
+        <h2>Current Score: {quizCount}</h2>
+>>>>>>> 78d014d067642e38c56c4640d4e235217265cc7a
         {gameIsOver ? gameover : game}
       </>
 
