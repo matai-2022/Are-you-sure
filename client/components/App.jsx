@@ -40,6 +40,8 @@ function App() {
       }, 1000)
     } else {
       e.target.style.backgroundColor = 'red'
+      //highlight correct answer
+      //data.correctAnswer.style.backgroundColor = 'green'
       // setTurnsCount(turnsCount + 1)
       setTimeout(() => {
         setTurnsCount(turnsCount + 1)
@@ -51,6 +53,8 @@ function App() {
     <>
       {data.map((quiz) => (
         <main key={quiz.id}>
+          <h2>Question {turnsCount + 1} out of 5</h2>
+          <h2>Current Score: {quizCount}</h2>
           <h3>{quiz.question}</h3>
           {quiz.answers.sort().map((answer) => {
             return (
@@ -83,7 +87,7 @@ function App() {
     <>
       <div className="app">
         <h1>Are you sure?!</h1>
-        <h2>Current Score: {quizCount}</h2>
+
         {gameIsOver ? gameover : game}
       </div>
 
