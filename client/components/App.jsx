@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 // import { set } from '../../server/server'
 
-import { getquizApi } from '../apis/quizApi'
+import { getquizApi, fetchAnswer } from '../apis/quizApi'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -23,18 +23,24 @@ function App() {
         console.log('this is front end data ', res)
         setData(res)
       })
-      .finally(() => {
-        console.log(answer, ' finally')
-        // setAnswer(res.correctAnswer)
-      })
       .catch((err) => {
         console.error(err.message)
       })
   }, [])
 
+
   function selectHandler(e) {
-    console.log(e.target.value)
+    if (e.target.value == e.target.name) {
+      console.log('CORRECT!')
+    } else {
+      console.log('ARE YOU SURE?')
+    }
   }
+
+  // function answerCollector(e) {
+  //   console.log(data.correctAnswer, ' this is acollector')
+  //   setAnswer(data.correctAnswer)
+  // }
 
   return (
     <>
@@ -46,12 +52,12 @@ function App() {
               <h3 key={quiz.id}>{quiz.question}</h3>
               {quiz.answers.sort().map((answer) => {
                 // setAnswer(answer)
-                return <button key={answer} value={answer} onClick={selectHandler}>
+                return <button key={answer} value={answer} name={quiz.correctAnswer} onClick={selectHandler}>
                   {answer}
                 </button>
                 // return <p key={answer}>- {answer}</p>
               })}
-              <p>(correct answer: {quiz.correctAnswer})</p>
+              {/* <p>(correct answer: {quiz.correctAnswer})</p> */}
             </>
           ))}
         {/* </ul> */}
