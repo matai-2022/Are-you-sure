@@ -11,12 +11,12 @@ router.get('/quiz', (req, res) => {
     )
     .set('accept', 'application/json')
     .then((response) => {
-      const data = response.body.map(qObj => {
+      const data = response.body.map((qObj) => {
         return {
           id: qObj.id,
           answers: [...qObj.incorrectAnswers, qObj.correctAnswer],
           correctAnswer: qObj.correctAnswer,
-          question: qObj.question
+          question: qObj.question,
         }
       })
       console.log('THIS IS DATA :', data)
