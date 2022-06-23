@@ -9,13 +9,9 @@ function App() {
   const [data, setData] = useState([])
 
   useEffect(() => {
-
     goToResults()
     getquizApi()
       .then((res) => {
-        console.log('turns: ', turnsCount)
-        console.log('correct: ', quizCount)
-        console.log('game over? ', gameIsOver)
         setData(res)
       })
       .catch((err) => {
@@ -37,26 +33,24 @@ function App() {
 
   function selectHandler(e) {
     if (e.target.value == e.target.name) {
-      console.log('CORRECT!')
-      console.log('game over? ', gameIsOver)
+      e.target.style.backgroundColor = 'green'
       incrementCount()
-      setTimeout(()=>{
+      setTimeout(() => {
         setTurnsCount(turnsCount + 1)
-      },1000)
+      }, 1000)
     } else {
-      console.log('ARE YOU SURE!')
+      e.target.style.backgroundColor = 'red'
       // setTurnsCount(turnsCount + 1)
-      setTimeout(()=>{
+      setTimeout(() => {
         setTurnsCount(turnsCount + 1)
-      },600)
+      }, 600)
     }
   }
-
 
   const game = (
     <>
       {data.map((quiz) => (
-        <main  key={quiz.id}>
+        <main key={quiz.id}>
           <h3>{quiz.question}</h3>
           {quiz.answers.sort().map((answer) => {
             return (
@@ -78,17 +72,18 @@ function App() {
   const gameover = (
     <>
       <h1>GAMEOVER!!</h1>
-      <h1>You scored {quizCount}/{turnsCount}!</h1>
+      <h1>
+        You scored {quizCount}/{turnsCount}!
+      </h1>
       <a href="/">Play again?</a>
     </>
   )
-
-
 
   return (
     <>
       <div className="app">
         <h1>Are you sure?!</h1>
+        <h2>Current Score: {quizCount}</h2>
         {gameIsOver ? gameover : game}
       </div>
 
