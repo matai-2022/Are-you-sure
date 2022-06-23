@@ -1,14 +1,15 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 
-import { getFruits } from '../apis/fruits'
+import { getquizApi } from '../apis/quizApi'
 
 function App() {
-  const [fruits, setFruits] = useState([])
-  useEffect(() => {
-    getFruits().then((fruits) => {
-      setFruits(fruits)
-    })
-  }, [])
+  const [count, setCount] = useState(0)
+
+  const [question, setQuestion] = useState('')
+
+  function handleClick(event) {
+    event.target
+  }
 
   return (
     <>
@@ -20,6 +21,8 @@ function App() {
           ))}
         </ul>
       </div>
+
+      <form>{}</form>
     </>
   )
 }
