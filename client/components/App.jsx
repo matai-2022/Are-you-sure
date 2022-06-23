@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
-import { getFruits } from '../apis/fruits'
+// import { getFruits } from '../apis/fruits'
 
 function App() {
   const [fruits, setFruits] = useState([])
