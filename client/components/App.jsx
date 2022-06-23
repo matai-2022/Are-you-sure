@@ -10,7 +10,6 @@ function App() {
   const [data, setData] = useState([])
 
   useEffect(() => {
-
     goToResults()
     getquizApi()
       .then((res) => {
@@ -41,53 +40,57 @@ function App() {
       console.log('CORRECT!')
       console.log('game over? ', gameIsOver)
       incrementCount()
-      setTimeout(()=>{
+      setTimeout(() => {
         setTurnsCount(turnsCount + 1)
-      },1000)
+      }, 1000)
     } else {
       console.log('ARE YOU SURE!')
       // setTurnsCount(turnsCount + 1)
-      setTimeout(()=>{
+      setTimeout(() => {
         setTurnsCount(turnsCount + 1)
-      },600)
+      }, 600)
     }
   }
 
-
   const game = (
-    <>
+    <section className="game-wrapper">
       {data.map((quiz) => (
-        <section  key={quiz.id}>
-          <h3>{quiz.question}</h3>
-          {quiz.answers.sort().map((answer) => {
-            return (
-              <button
-                key={answer}
-                value={answer}
-                name={quiz.correctAnswer}
-                onClick={selectHandler}
-              >
-                {answer}
-              </button>
-            )
-          })}
+        <section className="game-position-wrapper" key={quiz.id}>
+          <section className="question-wrapper">
+            <h2 className="game-question">{quiz.question}</h2>
+          </section>
+          <section className="game-btn-wrapper">
+            {quiz.answers.sort().map((answer) => {
+              return (
+                <button
+                  className="game-btn"
+                  key={answer}
+                  value={answer}
+                  name={quiz.correctAnswer}
+                  onClick={selectHandler}
+                >
+                  {answer}
+                </button>
+              )
+            })}
+          </section>
         </section>
       ))}
-    </>
+    </section>
   )
 
   const gameover = (
     <>
       <h1>GAMEOVER!!</h1>
-      <h1>You scored {quizCount}/{turnsCount}!</h1>
+      <h1>
+        You scored {quizCount}/{turnsCount}!
+      </h1>
       <a href="/">Play again?</a>
     </>
   )
 
-
-
   return (
-    <main className='main-wrapper'>
+    <main className="main-wrapper">
       <>
         <Header />
         {gameIsOver ? gameover : game}
