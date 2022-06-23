@@ -49,13 +49,18 @@ function App() {
   }
 
   const game = (
-    <section className="game-wrapper">
+    <section className='game-wrapper'>
       {data.map((quiz) => (
-        <main key={quiz.id}>
-          <h3>{quiz.question}</h3>
+        <section className="game-position-wrapper" key={quiz.id}>
+          <div className="question-wrapper">
+            <h2 className="game-question">{quiz.question}</h2>
+            <h3 className="game-question">Current Score: {quizCount}</h3>
+          </div>
+          <div className='game-btn-wrapper'>
           {quiz.answers.sort().map((answer) => {
             return (
               <button
+                className="game-btn"
                 key={answer}
                 value={answer}
                 name={quiz.correctAnswer}
@@ -65,7 +70,8 @@ function App() {
               </button>
             )
           })}
-        </main>
+          </div>
+        </section>
       ))}
     </section>
   )
@@ -81,16 +87,9 @@ function App() {
   )
 
   return (
-<<<<<<< HEAD
     <main className="main-wrapper">
       <>
         <Header />
-=======
-    <>
-      <div className="app">
-        <h1>Are you sure?!</h1>
-        <h2>Current Score: {quizCount}</h2>
->>>>>>> 78d014d067642e38c56c4640d4e235217265cc7a
         {gameIsOver ? gameover : game}
       </>
 
