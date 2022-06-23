@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 
 import { getquizApi } from '../apis/quizApi'
+import Header from './Header'
 
 function App() {
   const [turnsCount, setTurnsCount] = useState(0)
@@ -50,27 +51,34 @@ function App() {
   }
 
   const game = (
-    <>
+    <section className="game-wrapper">
       {data.map((quiz) => (
-        <main key={quiz.id}>
-          <h2>Question {turnsCount + 1} out of 5</h2>
-          <h2>Current Score: {quizCount}</h2>
-          <h3>{quiz.question}</h3>
-          {quiz.answers.sort().map((answer) => {
-            return (
-              <button
-                key={answer}
-                value={answer}
-                name={quiz.correctAnswer}
-                onClick={selectHandler}
-              >
-                {answer}
-              </button>
-            )
-          })}
-        </main>
+        <section className="game-position-wrapper" key={quiz.id}>
+          <div className="question-wrapper">
+            <h2 className="game-question">
+              Question {turnsCount + 1} out of 5
+            </h2>
+            <h2 className="game-question">{quiz.question}</h2>
+            <h3 className="game-question">Current Score: {quizCount}</h3>
+          </div>
+          <div className="game-btn-wrapper">
+            {quiz.answers.sort().map((answer) => {
+              return (
+                <button
+                  className="game-btn"
+                  key={answer}
+                  value={answer}
+                  name={quiz.correctAnswer}
+                  onClick={selectHandler}
+                >
+                  {answer}
+                </button>
+              )
+            })}
+          </div>
+        </section>
       ))}
-    </>
+    </section>
   )
 
   const gameover = (
@@ -84,15 +92,14 @@ function App() {
   )
 
   return (
-    <>
-      <div className="app">
-        <h1>Are you sure?!</h1>
-
+    <main className="main-wrapper">
+      <>
+        <Header />
         {gameIsOver ? gameover : game}
-      </div>
+      </>
 
       <form>{}</form>
-    </>
+    </main>
   )
 }
 
