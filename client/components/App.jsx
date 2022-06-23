@@ -1,26 +1,21 @@
 import React, { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
 
-import { getquizApi, fetchAnswer } from '../apis/quizApi'
+import { getquizApi } from '../apis/quizApi'
 
 function App() {
   const [turnsCount, setTurnsCount] = useState(0)
   const [quizCount, setQuizCount] = useState(0)
   const [gameIsOver, setGameIsOver] = useState(false)
   const [data, setData] = useState([])
-  const navigate = useNavigate()
 
   useEffect(() => {
-    // const apiData = getquizApi()
-    // console.log(apiData)
+
     goToResults()
     getquizApi()
       .then((res) => {
-        // console.log(console.log(turnsCount))
         console.log('turns: ', turnsCount)
         console.log('correct: ', quizCount)
         console.log('game over? ', gameIsOver)
-
         setData(res)
       })
       .catch((err) => {
@@ -57,17 +52,13 @@ function App() {
     }
   }
 
-  // function resetHandler() {
-  //   navigate('/')
-  // }
 
   const game = (
     <>
       {data.map((quiz) => (
-        <>
-          <h3 key={quiz.id}>{quiz.question}</h3>
+        <main  key={quiz.id}>
+          <h3>{quiz.question}</h3>
           {quiz.answers.sort().map((answer) => {
-            // setAnswer(answer)
             return (
               <button
                 key={answer}
@@ -78,10 +69,8 @@ function App() {
                 {answer}
               </button>
             )
-            // return <p key={answer}>- {answer}</p>
           })}
-          <p>(correct answer: {quiz.correctAnswer})</p>
-        </>
+        </main>
       ))}
     </>
   )
@@ -90,17 +79,16 @@ function App() {
     <>
       <h1>GAMEOVER!!</h1>
       <h1>You scored {quizCount}/{turnsCount}!</h1>
-      {/* <button onClick={resetHandler}>
-        Play again?
-      </button> */}
       <a href="/">Play again?</a>
     </>
   )
 
+
+
   return (
     <>
       <div className="app">
-        <h1>Fullstack Boilerplate - with Fruits!</h1>
+        <h1>Are you sure?!</h1>
         {gameIsOver ? gameover : game}
       </div>
 
