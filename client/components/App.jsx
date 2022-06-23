@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 
 import { getquizApi } from '../apis/quizApi'
+import Header from './Header'
 
 function App() {
   const [turnsCount, setTurnsCount] = useState(0)
@@ -56,7 +57,7 @@ function App() {
   const game = (
     <>
       {data.map((quiz) => (
-        <main  key={quiz.id}>
+        <section  key={quiz.id}>
           <h3>{quiz.question}</h3>
           {quiz.answers.sort().map((answer) => {
             return (
@@ -70,7 +71,7 @@ function App() {
               </button>
             )
           })}
-        </main>
+        </section>
       ))}
     </>
   )
@@ -86,14 +87,14 @@ function App() {
 
 
   return (
-    <>
-      <div className="app">
-        <h1>Are you sure?!</h1>
+    <main className='main-wrapper'>
+      <>
+        <Header />
         {gameIsOver ? gameover : game}
-      </div>
+      </>
 
       <form>{}</form>
-    </>
+    </main>
   )
 }
 
