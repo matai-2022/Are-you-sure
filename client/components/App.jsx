@@ -90,7 +90,7 @@ function App() {
       <a href="/">Play again?</a>
     </>
   )
-//  SAIA WAS HERE
+  //  SAIA WAS HERE
   return (
     <main className="main-wrapper">
       <>
