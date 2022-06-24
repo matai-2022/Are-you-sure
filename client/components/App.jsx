@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 
 import { getquizApi } from '../apis/quizApi'
 
-
 import Timer from './Timer'
 
 import Header from './Header'
@@ -46,13 +45,8 @@ function App() {
       setTurnsCount(turnsCount + 1)
       setTimeOut(false)
     }
-
-    if (turnsCount == 5) {
-      setTurnsCount(turnsCount)
-    }
-
   }
-  // outOfTime()
+  outOfTime()
 
   function selectHandler(e) {
     if (e.target.value == e.target.name) {
@@ -64,7 +58,6 @@ function App() {
       }, 1000)
     } else {
       e.target.style.backgroundColor = 'red'
-
 
       //highlight correct answer
       //data.correctAnswer.style.backgroundColor = 'green'
@@ -79,8 +72,6 @@ function App() {
   const game = (
     <>
       {data.map((quiz) => (
-
-
         <section className="game-position-wrapper" key={quiz.id}>
           <div className="question-wrapper">
             <h2 className="game-question">
@@ -106,8 +97,7 @@ function App() {
           </div>
         </section>
       ))}
-    </section>
-
+    </>
   )
 
   const gameover = (
@@ -124,19 +114,19 @@ function App() {
     </>
   )
 
-
   //  SAIA WAS HERE
   return (
     <main className="main-wrapper">
       <>
-        <Header />
+        <div>
+          <Header />
+          <Timer setTimeOut={setTimeOut} turnsCount={turnsCount} />
+          {gameIsOver ? gameover : game}
+        </div>
 
-
-        {gameIsOver ? gameover : game}
-      </div>
-
-      <form>{}</form>
-    </>
+        <form>{}</form>
+      </>
+    </main>
   )
 }
 
