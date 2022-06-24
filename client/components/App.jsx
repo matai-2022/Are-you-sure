@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 
 import { getquizApi } from '../apis/quizApi'
 
+
 import Timer from './Timer'
 
 import Header from './Header'
@@ -17,6 +18,9 @@ function App() {
     goToResults()
     getquizApi()
       .then((res) => {
+        console.log('turns: ', turnsCount)
+        console.log('correct: ', quizCount)
+        console.log('game over? ', gameIsOver)
         setData(res)
       })
       .catch((err) => {
@@ -42,9 +46,11 @@ function App() {
       setTurnsCount(turnsCount + 1)
       setTimeOut(false)
     }
+
     if (turnsCount == 5) {
       setTurnsCount(turnsCount)
     }
+
   }
   // outOfTime()
 
@@ -59,6 +65,7 @@ function App() {
     } else {
       e.target.style.backgroundColor = 'red'
 
+
       //highlight correct answer
       //data.correctAnswer.style.backgroundColor = 'green'
 
@@ -70,8 +77,9 @@ function App() {
   }
 
   const game = (
-    <section className="game-wrapper">
+    <>
       {data.map((quiz) => (
+
 
         <section className="game-position-wrapper" key={quiz.id}>
           <div className="question-wrapper">
@@ -112,17 +120,19 @@ function App() {
     </>
   )
 
+
   //  SAIA WAS HERE
   return (
     <main className="main-wrapper">
       <>
         <Header />
 
+
         {gameIsOver ? gameover : game}
-      </>
+      </div>
 
       <form>{}</form>
-    </main>
+    </>
   )
 }
 
