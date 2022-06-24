@@ -72,7 +72,7 @@ function App() {
   const game = (
     <>
       {data.map((quiz) => (
-        <section className="game-position-wrapper" key={quiz.id}>
+        <section className="game-wrapper" key={quiz.id}>
           <div className="question-wrapper">
             <h2 className="game-question">
               Question {turnsCount + 1} out of 5
@@ -120,7 +120,9 @@ function App() {
       <>
         <div>
           <Header />
-          <Timer setTimeOut={setTimeOut} turnsCount={turnsCount} />
+          <section className="Timer">
+            <Timer setTimeOut={setTimeOut} turnsCount={turnsCount} />
+          </section>
           {gameIsOver ? gameover : game}
         </div>
 

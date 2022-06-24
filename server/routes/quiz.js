@@ -7,7 +7,7 @@ const router = express.Router()
 router.get('/quiz', (req, res) => {
   return request
     .get(
-      'https://the-trivia-api.com/api/questions?categories=Food&Drink&limit=1&difficulty=hard'
+      'https://the-trivia-api.com/api/questions?categories=general_knowledge&limit=1&difficulty=hard'
     )
     .set('accept', 'application/json')
     .then((response) => {

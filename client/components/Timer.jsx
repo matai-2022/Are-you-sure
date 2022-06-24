@@ -15,7 +15,7 @@ export default function Timer({ setTimeOut, turnsCount }) {
   }, [timer, setTimeOut])
 
   useEffect(() => {
-    setTimer(10)
+    setTimer(20)
   }, [turnsCount])
   return timer
 }

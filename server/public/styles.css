@@ -21,12 +21,12 @@ box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px, rgba(0, 0, 0, 0.3) 0px 1
 .game-btn-wrapper {
 
   padding: 16px;
-  border: 3px solid white;
+  border: 3px solid teal;
   border-radius: 25px;
 }
 
 .game-btn {
-  background-color: rgb(204, 142, 27);
+  background-color: teal;
   border: none;
   color: rgb(255, 255, 255);
   margin: 20px 10px 0px 10px ;
@@ -53,7 +53,7 @@ color: teal;
 
 .main-wrapper{
   text-align: center;
-  background-color: rgb(255,255,255);
+  background-color: aliceblue;
   height: 1000px;
 
 }
@@ -72,4 +72,11 @@ color: teal;
 
 a:hover {
   color: hotpink;
+}
+
+.Timer {
+  color: red;
+  font-size: 100px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  
 }
