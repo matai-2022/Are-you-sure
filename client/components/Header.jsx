@@ -2,8 +2,8 @@ import React from 'react'
 
 function Header() {
   return (
-    <header>
-      <h1> ARE YOU SURE !?</h1>
+    <header className='header-wrapper'>
+      <h1 className='header-title'> ARE YOU SURE !?</h1>
     </header>
   )
 }
