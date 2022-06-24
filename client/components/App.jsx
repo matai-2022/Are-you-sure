@@ -41,6 +41,8 @@ function App() {
       }, 1000)
     } else {
       e.target.style.backgroundColor = 'red'
+      //highlight correct answer
+      //data.correctAnswer.style.backgroundColor = 'green'
       // setTurnsCount(turnsCount + 1)
       setTimeout(() => {
         setTurnsCount(turnsCount + 1)
@@ -49,27 +51,30 @@ function App() {
   }
 
   const game = (
-    <section className='game-wrapper'>
+    <section className="game-wrapper">
       {data.map((quiz) => (
         <section className="game-position-wrapper" key={quiz.id}>
           <div className="question-wrapper">
+            <h2 className="game-question">
+              Question {turnsCount + 1} out of 5
+            </h2>
             <h2 className="game-question">{quiz.question}</h2>
             <h3 className="game-question">Current Score: {quizCount}</h3>
           </div>
-          <div className='game-btn-wrapper'>
-          {quiz.answers.sort().map((answer) => {
-            return (
-              <button
-                className="game-btn"
-                key={answer}
-                value={answer}
-                name={quiz.correctAnswer}
-                onClick={selectHandler}
-              >
-                {answer}
-              </button>
-            )
-          })}
+          <div className="game-btn-wrapper">
+            {quiz.answers.sort().map((answer) => {
+              return (
+                <button
+                  className="game-btn"
+                  key={answer}
+                  value={answer}
+                  name={quiz.correctAnswer}
+                  onClick={selectHandler}
+                >
+                  {answer}
+                </button>
+              )
+            })}
           </div>
         </section>
       ))}
@@ -85,7 +90,7 @@ function App() {
       <a href="/">Play again?</a>
     </>
   )
-//  SAIA WAS HERE
+  //  SAIA WAS HERE
   return (
     <main className="main-wrapper">
       <>
