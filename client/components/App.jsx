@@ -83,11 +83,15 @@ function App() {
 
   const gameover = (
     <>
-      <h1>GAMEOVER!!</h1>
-      <h1>
-        You scored {quizCount}/{turnsCount}!
-      </h1>
-      <a href="/">Play again?</a>
+      <div className="final-result">
+        <h1>GAMEOVER!!</h1>
+        <h1>
+          You scored {quizCount}/{turnsCount}!
+        </h1>
+        <button>
+          <a href="/">Play again?</a>
+        </button>
+      </div>
     </>
   )
   //  SAIA WAS HERE
