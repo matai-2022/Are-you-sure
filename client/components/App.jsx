@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react'
 
 import { getquizApi } from '../apis/quizApi'
+
+import Timer from './Timer'
+
 import Header from './Header'
 
 function App() {
@@ -8,6 +11,7 @@ function App() {
   const [quizCount, setQuizCount] = useState(0)
   const [gameIsOver, setGameIsOver] = useState(false)
   const [data, setData] = useState([])
+  const [timeOut, setTimeOut] = useState(false)
 
   useEffect(() => {
     goToResults()
@@ -32,17 +36,32 @@ function App() {
     }
   }
 
+  function outOfTime() {
+    console.log(timeOut)
+    if (timeOut) {
+      setTurnsCount(turnsCount + 1)
+      setTimeOut(false)
+    }
+    if (turnsCount == 5) {
+      setTurnsCount(turnsCount)
+    }
+  }
+  // outOfTime()
+
   function selectHandler(e) {
     if (e.target.value == e.target.name) {
       e.target.style.backgroundColor = 'green'
+
       incrementCount()
       setTimeout(() => {
         setTurnsCount(turnsCount + 1)
       }, 1000)
     } else {
       e.target.style.backgroundColor = 'red'
+
       //highlight correct answer
       //data.correctAnswer.style.backgroundColor = 'green'
+
       // setTurnsCount(turnsCount + 1)
       setTimeout(() => {
         setTurnsCount(turnsCount + 1)
@@ -53,6 +72,7 @@ function App() {
   const game = (
     <section className="game-wrapper">
       {data.map((quiz) => (
+
         <section className="game-position-wrapper" key={quiz.id}>
           <div className="question-wrapper">
             <h2 className="game-question">
@@ -79,6 +99,7 @@ function App() {
         </section>
       ))}
     </section>
+
   )
 
   const gameover = (
@@ -90,11 +111,13 @@ function App() {
       <a href="/">Play again?</a>
     </>
   )
+
   //  SAIA WAS HERE
   return (
     <main className="main-wrapper">
       <>
         <Header />
+
         {gameIsOver ? gameover : game}
       </>
 
