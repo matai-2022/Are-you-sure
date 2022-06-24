@@ -1,0 +1,75 @@
+.game-wrapper {
+background-color : rgb(44, 0, 48);
+padding: 16px;
+border-radius: 16px;
+color: rgb(255, 255, 255);
+width: 80%;
+height: auto;
+margin: 0 auto;
+box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px ;
+}
+
+.question-wrapper {
+  background-color:  rgb(44, 0, 48);
+  font-size: 24px;
+}
+
+.game-question {
+ font-family:  'Trebuchet MS', sans-serif;
+}
+
+.game-btn-wrapper {
+
+  padding: 16px;
+  border: 3px solid white;
+  border-radius: 25px;
+}
+
+.game-btn {
+  background-color: rgb(204, 142, 27);
+  border: none;
+  color: rgb(255, 255, 255);
+  margin: 20px 10px 0px 10px ;
+  padding: 16px 24px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 30px;
+  font-weight: bold;
+  border-radius: 24px;
+}
+
+.header-wrapper {
+  
+}
+
+.header-title {
+font-family: Anton;
+font-weight: bold;
+font-size: 500%;
+color: teal;
+}
+
+
+.main-wrapper{
+  text-align: center;
+  background-color: rgb(255,255,255);
+  height: 1000px;
+
+}
+
+.final-result {
+  background-color : rgb(44, 0, 48);
+  padding: 16px;
+  border-radius: 16px;
+  color: rgb(255, 255, 255);
+  width: 50%;
+  height: auto;
+  margin: 0 auto;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px
+}
+
+
+a:hover {
+  color: hotpink;
+}
