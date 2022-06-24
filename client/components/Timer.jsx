@@ -4,11 +4,13 @@ export default function Timer({ setTimeOut, turnsCount }) {
   const [timer, setTimer] = useState(10)
 
   useEffect(() => {
-    if (timer === 0) return setTimeOut(true)
-
     const interval = setInterval(() => {
       setTimer((prev) => prev - 1)
     }, 1000)
+    if (timer === 0) {
+      setTimeOut(true)
+      clearInterval(interval)
+    }
     return () => clearInterval(interval)
   }, [timer, setTimeOut])
 
