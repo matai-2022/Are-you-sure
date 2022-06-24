@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from 'react'
 
 import { getquizApi } from '../apis/quizApi'
+
+
 import Timer from './Timer'
+
+import Header from './Header'
+
 function App() {
   const [turnsCount, setTurnsCount] = useState(0)
   const [quizCount, setQuizCount] = useState(0)
@@ -41,6 +46,11 @@ function App() {
       setTurnsCount(turnsCount + 1)
       setTimeOut(false)
     }
+
+    if (turnsCount == 5) {
+      setTurnsCount(turnsCount)
+    }
+
   }
   // outOfTime()
 
@@ -54,7 +64,11 @@ function App() {
       }, 1000)
     } else {
       e.target.style.backgroundColor = 'red'
-      console.log('ARE YOU SURE!')
+
+
+      //highlight correct answer
+      //data.correctAnswer.style.backgroundColor = 'green'
+
       // setTurnsCount(turnsCount + 1)
       setTimeout(() => {
         setTurnsCount(turnsCount + 1)
@@ -65,24 +79,35 @@ function App() {
   const game = (
     <>
       {data.map((quiz) => (
-        <main key={quiz.id}>
-          <h3>{quiz.question}</h3>
-          {quiz.answers.sort().map((answer) => {
-            return (
-              <button
-                key={answer}
-                value={answer}
-                name={quiz.correctAnswer}
-                onClick={selectHandler}
-              >
-                {answer}
-              </button>
-            )
-          })}
-        </main>
+
+
+        <section className="game-position-wrapper" key={quiz.id}>
+          <div className="question-wrapper">
+            <h2 className="game-question">
+              Question {turnsCount + 1} out of 5
+            </h2>
+            <h2 className="game-question">{quiz.question}</h2>
+            <h3 className="game-question">Current Score: {quizCount}</h3>
+          </div>
+          <div className="game-btn-wrapper">
+            {quiz.answers.sort().map((answer) => {
+              return (
+                <button
+                  className="game-btn"
+                  key={answer}
+                  value={answer}
+                  name={quiz.correctAnswer}
+                  onClick={selectHandler}
+                >
+                  {answer}
+                </button>
+              )
+            })}
+          </div>
+        </section>
       ))}
-      {outOfTime()}
-    </>
+    </section>
+
   )
 
   const gameover = (
@@ -95,11 +120,14 @@ function App() {
     </>
   )
 
+
+  //  SAIA WAS HERE
   return (
-    <>
-      <div className="app">
-        <h1>Are you sure?!</h1>
-        <Timer turnsCount={turnsCount} setTimeOut={setTimeOut} />
+    <main className="main-wrapper">
+      <>
+        <Header />
+
+
         {gameIsOver ? gameover : game}
       </div>
 
