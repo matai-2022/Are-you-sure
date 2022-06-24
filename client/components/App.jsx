@@ -41,9 +41,6 @@ function App() {
       setTurnsCount(turnsCount + 1)
       setTimeOut(false)
     }
-    if (turnsCount == 5) {
-      goToResults()
-    }
   }
   // outOfTime()
 
